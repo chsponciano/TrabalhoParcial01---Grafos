@@ -9,47 +9,46 @@ public class Exercicio01 {
         Exercicio01 t = new Exercicio01();
         int[][] adj = new int[4][4];
         //Não dirigido
-//        adj[0][0] = 0;
-//        adj[0][1] = 1;
-//        adj[0][2] = 1;
-//        adj[0][3] = 0;
-//
-//        adj[1][0] = 1;
-//        adj[1][1] = 0;
-//        adj[1][2] = 0;
-//        adj[1][3] = 1;
-//
-//        adj[2][0] = 1;
-//        adj[2][1] = 0;
-//        adj[2][2] = 0;
-//        adj[2][3] = 1;
-//
-//        adj[3][0] = 0;
-//        adj[3][1] = 1;
-//        adj[3][2] = 1;
-//        adj[3][3] = 0;
-//        System.out.println((t.isSimetrico(adj)) ? "Não dirigido" : "Dirigido");
-
-        //Dirigido
         adj[0][0] = 0;
         adj[0][1] = 1;
-        adj[0][2] = 0;
-        adj[0][3] = 1;
+        adj[0][2] = 1;
+        adj[0][3] = 0;
 
-        adj[1][0] = 0;
+        adj[1][0] = 1;
         adj[1][1] = 0;
         adj[1][2] = 0;
-        adj[1][3] = 0;
+        adj[1][3] = 1;
 
-        adj[2][0] = 0;
-        adj[2][1] = 1;
+        adj[2][0] = 1;
+        adj[2][1] = 0;
         adj[2][2] = 0;
-        adj[2][3] = 0;
+        adj[2][3] = 1;
 
         adj[3][0] = 0;
-        adj[3][1] = 0;
+        adj[3][1] = 1;
         adj[3][2] = 1;
         adj[3][3] = 0;
+
+        //Dirigido
+//        adj[0][0] = 0;
+//        adj[0][1] = 1;
+//        adj[0][2] = 0;
+//        adj[0][3] = 1;
+//
+//        adj[1][0] = 0;
+//        adj[1][1] = 0;
+//        adj[1][2] = 0;
+//        adj[1][3] = 0;
+//
+//        adj[2][0] = 0;
+//        adj[2][1] = 1;
+//        adj[2][2] = 0;
+//        adj[2][3] = 0;
+//
+//        adj[3][0] = 0;
+//        adj[3][1] = 0;
+//        adj[3][2] = 1;
+//        adj[3][3] = 0;
 
         System.out.println(t.tipoDoGrafo(adj));
     }
@@ -61,17 +60,16 @@ public class Exercicio01 {
         //3 - completo;        
         //4 - nulo ou bipartido;
         boolean[] resultado = {true, false, false, false, false};
-
+        
         for (int v = 0; v < adj.length; v++) {
             for (int w = 0; w < adj[v].length; w++) {
                 if (resultado[0]) {
-                    resultado[0] = (adj[v][w] != adj[w][v]);
+                    resultado[0] = (adj[v][w] == adj[w][v]);
                 }
 
                 if (!resultado[1]) {
                     resultado[1] = (((v == w) && (adj[v][w] != 0)) || (adj[v][w] > 1));
                 }
-
             }
         }
 
