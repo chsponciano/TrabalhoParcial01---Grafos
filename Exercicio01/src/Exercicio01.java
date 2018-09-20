@@ -141,15 +141,4 @@ public class Exercicio01 {
 
         return str;
     }
-
-    private boolean isMultigrafo(final int[][] adj) {
-        for (int v = 0; v < adj.length; v++) {
-            for (int w = 0; w < adj[v].length; w++) {
-                if (((v == w) && (adj[v][w] != 0)) || (adj[v][w] > 1)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 }
