@@ -112,24 +112,8 @@ public class Exercicio01 {
 
         return str;
     }
-
-    int[] cor;
-
-    private int bipartido(int[][] adj) {
-        int v;
-        this.cor = new int[adj.length];
-        for (v = 0; v < adj.length; ++v) {
-            this.cor[v] = -1;
-        }
-        for (v = 0; v < adj.length; ++v) {
-            if (this.cor[v] == -1) {
-                if (dfsCor(v, 0) == 0) {
-                    return 0;
-                }
-            }
-        }
-        return 1;
-    }
+    
+    
 
     public String arestasDoGrafo(final int[][] adj) {
         return null;
