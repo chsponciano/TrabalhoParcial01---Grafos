@@ -190,15 +190,15 @@ public class Exercicio01 {
             for (int w = 0; w < adj[v].length; w++) {
                 if (adj[v][w] > 0) {
 //                    if (!isSimetrico || w > v) {
-                        saida += "(v" + (v + 1) + ", v" + (w + 1) + "), ";
-                        nArestas++;
+                    saida += "(v" + (v + 1) + ", v" + (w + 1) + "), ";
+                    nArestas++;
 //                    }
                 }
             }
         }
-        if(isSimetrico){
-            totalizador = "N° arestas: " + (nArestas/2) + " | ";
-        }else{
+        if (isSimetrico) {
+            totalizador = "N° arestas: " + (nArestas / 2) + " | ";
+        } else {
             totalizador = "N° arestas de Entrada : " + nArestas + " | N° arestas de Saida : " + nArestas + " | ";
         }
 
@@ -207,21 +207,39 @@ public class Exercicio01 {
 
     public String grausDoVertices(final int[][] adj) {
         String saida = new String();
-        this.statusGrafos(adj);
-        
         List<Integer> graus = new ArrayList();
-        
-        for (int i = 0; i < this.graus[0].length; i++) {
-            graus.add(this.graus[0][i]);
-            saida += "v"+(i+1)+" = "+ this.graus[0][i] + ", ";
+
+        if (this.statusGrafos(adj)[0]) {
+
+            for (int i = 0; i < this.graus[0].length; i++) {
+                graus.add(this.graus[0][i]);
+                saida += "v" + (i + 1) + " = " + this.graus[0][i] + ", ";
+            }
+
+        } else {
+
+            saida = "Saida: ";
+            for (int i = 0; i < this.graus[0].length; i++) {
+                graus.add(this.graus[0][i]);
+                saida += "v" + (i + 1) + " = " + this.graus[0][i] + ", ";
+            }
+
+            saida = saida.substring(0, saida.length() - 2) + " | Entrada: ";
+
+            for (int i = 0; i < this.graus[1].length; i++) {
+                saida += "v" + (i + 1) + " = " + this.graus[1][i] + ", ";
+            }
+
         }
-        
+
         Collections.sort(graus);
-        saida = saida.substring(0, saida.length()-2) + " | (";
+
+        saida = saida.substring(0, saida.length() - 2) + " | (";
         for (Integer g : graus) {
             saida += g + ", ";
         }
-        return saida.substring(0, saida.length()-2) + ")";
+
+        return saida.substring(0, saida.length() - 2) + ")";
     }
 
     private boolean isBipartido(int[][] adj) {
