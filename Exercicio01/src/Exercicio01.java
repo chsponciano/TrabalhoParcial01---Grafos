@@ -1,11 +1,8 @@
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  *
@@ -27,7 +24,7 @@ public class Exercicio01 {
 
         System.out.println("1a. " + t.tipoDoGrafo(adj));
         System.out.println("1b. " + t.arestasDoGrafo(adj));
-//        System.out.println("1c. " + t.grausDoVertices(adj));
+        System.out.println("1c. " + t.grausDoVertices(adj));
         System.out.println("");
 
         adj = new int[][]{
@@ -39,7 +36,7 @@ public class Exercicio01 {
 
         System.out.println("2a. " + t.tipoDoGrafo(adj));
         System.out.println("2b. " + t.arestasDoGrafo(adj));
-//        System.out.println("2c. " + t.grausDoVertices(adj));
+        System.out.println("2c. " + t.grausDoVertices(adj));
         System.out.println("");
 
         adj = new int[][]{
