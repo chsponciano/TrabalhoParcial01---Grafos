@@ -19,7 +19,7 @@ public class Exercicio01 {
             //A,B,C
             {0, 1, 1}, //A
             {1, 0, 1}, //B
-            {1, 1, 0} //C
+            {1, 1, 0}  //C
         };
 
         System.out.println("1a. " + t.tipoDoGrafo(adj));
@@ -31,7 +31,7 @@ public class Exercicio01 {
             //A,B,C
             {0, 1, 0}, //A
             {0, 0, 1}, //B
-            {1, 0, 0} //C
+            {1, 0, 0}  //C
         };
 
         System.out.println("2a. " + t.tipoDoGrafo(adj));
@@ -44,7 +44,7 @@ public class Exercicio01 {
             {0, 1, 1, 1}, //A
             {1, 0, 0, 0}, //B
             {1, 0, 0, 0}, //C
-            {1, 0, 0, 0} //D
+            {1, 0, 0, 0}  //D
         };
 
         System.out.println("3a. " + t.tipoDoGrafo(adj));
@@ -57,7 +57,7 @@ public class Exercicio01 {
             {0, 1, 1, 1}, //A
             {1, 0, 1, 1}, //B
             {1, 1, 0, 1}, //C
-            {1, 1, 1, 0} //D
+            {1, 1, 1, 0}  //D
         };
 
         System.out.println("4a. " + t.tipoDoGrafo(adj));
@@ -71,7 +71,7 @@ public class Exercicio01 {
             {0, 0, 0, 1, 0}, //B
             {0, 0, 0, 0, 1}, //C
             {1, 1, 0, 0, 0}, //D
-            {0, 1, 1, 0, 0} //E
+            {0, 1, 1, 0, 0}  //E
         };
 
         System.out.println("5a. " + t.tipoDoGrafo(adj));
@@ -85,7 +85,7 @@ public class Exercicio01 {
             {0, 0, 0, 1, 1}, //B
             {0, 0, 0, 1, 1}, //C
             {1, 1, 1, 0, 0}, //D
-            {1, 1, 1, 0, 0} //E
+            {1, 1, 1, 0, 0}  //E
         };
 
         System.out.println("6a. " + t.tipoDoGrafo(adj));
@@ -99,7 +99,7 @@ public class Exercicio01 {
             {0, 0, 0, 0, 1}, //B
             {0, 0, 0, 0, 1}, //C
             {0, 0, 0, 0, 1}, //D
-            {1, 1, 1, 1, 0} //E
+            {1, 1, 1, 1, 0}  //E
         };
 
         System.out.println("7a. " + t.tipoDoGrafo(adj));
@@ -113,7 +113,7 @@ public class Exercicio01 {
             {1, 0, 0, 1, 0}, //B
             {1, 0, 0, 0, 1}, //C
             {0, 1, 0, 0, 1}, //D
-            {0, 0, 1, 1, 0} //E
+            {0, 0, 1, 1, 0}  //E
         };
 
         System.out.println("8a. " + t.tipoDoGrafo(adj));
