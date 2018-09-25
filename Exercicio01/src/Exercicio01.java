@@ -11,46 +11,91 @@ public class Exercicio01 {
 
     public static void main(String[] args) {
         Exercicio01 t = new Exercicio01();
-        int[][] adj = new int[3][3];
-        //Não dirigido
-        adj[0][0] = 0;
-        adj[0][1] = 0;
-        adj[0][2] = 0;
-
-        adj[1][0] = 1;
-        adj[1][1] = 0;
-        adj[1][2] = 1;
-
-        adj[2][0] = 1;
-        adj[2][1] = 1;
-        adj[2][2] = 0;
-
-        System.out.println(t.arestasDoGrafo(adj));
-
-        System.out.println("\n-----------------------\n");
-
-        adj = new int[4][4];
-        //Dirigido
-        adj[0][0] = 0;
-        adj[0][1] = 1;
-        adj[0][2] = 1;
-        adj[0][3] = 0;
-
-        adj[1][0] = 1;
-        adj[1][1] = 0;
-        adj[1][2] = 0;
-        adj[1][3] = 1;
-
-        adj[2][0] = 1;
-        adj[2][1] = 0;
-        adj[2][2] = 0;
-        adj[2][3] = 1;
-
-        adj[3][0] = 0;
-        adj[3][1] = 1;
-        adj[3][2] = 1;
-        adj[3][3] = 0;
-        System.out.println(t.arestasDoGrafo(adj));
+        
+        int[][] adj = new int[][] {
+           //A,B,C
+            {0,1,1},  //A
+            {1,0,1},  //B
+            {1,1,0}   //C
+        };
+        
+        System.out.println(t.isBipartido(adj) ? "Bipartido" : "Não Bipartido(Certo)");
+        
+        adj = new int[][] {
+           //A,B,C,D
+            {0,1,1,0},  //A
+            {1,0,0,1},  //B
+            {1,0,0,1},  //C
+            {0,1,1,0}   //D
+        };
+        
+        System.out.println(t.isBipartido(adj) ? "Bipartido(Certo)" : "Não Bipartido");
+        
+        adj = new int[][] {
+           //A,B,C,D
+            {0,1,1,1},  //A
+            {1,0,0,0},  //B
+            {1,0,0,0},  //C
+            {1,0,0,0}   //D
+        };
+        
+        System.out.println(t.isBipartido(adj) ? "Bipartido(Certo)" : "Não Bipartido");
+        
+        adj = new int[][] {
+           //A,B,C,D
+            {0,1,1,1},  //A
+            {1,0,1,1},  //B
+            {1,1,0,1},  //C
+            {1,1,1,0}   //D
+        };
+        
+        System.out.println(t.isBipartido(adj) ? "Bipartido" : "Não Bipartido(Certo)");
+        
+        adj = new int[][] {
+           //A,B,C,D,E
+            {0,0,0,1,0},  //A
+            {0,0,0,1,0},  //B
+            {0,0,0,0,1},  //C
+            {1,1,0,0,0},  //D
+            {0,1,1,0,0}   //E
+        };
+        
+        System.out.println(t.isBipartido(adj) ? "Bipartido(Certo)" : "Não Bipartido");
+        
+        adj = new int[][] {
+           //A,B,C,D,E
+            {0,0,0,1,1},  //A
+            {0,0,0,1,1},  //B
+            {0,0,0,1,1},  //C
+            {1,1,1,0,0},  //D
+            {1,1,1,0,0}   //E
+        };
+        
+        System.out.println(t.isBipartido(adj) ? "Bipartido(Certo)" : "Não Bipartido");
+        
+        adj = new int[][] {
+           //A,B,C,D,E
+            {0,0,0,0,1},  //A
+            {0,0,0,0,1},  //B
+            {0,0,0,0,1},  //C
+            {0,0,0,0,1},  //D
+            {1,1,1,1,0}   //E
+        };
+        
+        System.out.println(t.isBipartido(adj) ? "Bipartido(Certo)" : "Não Bipartido");
+        
+        adj = new int[][] {
+           //A,B,C,D,E
+            {0,1,1,0,0},  //A
+            {1,0,0,1,0},  //B
+            {1,0,0,0,1},  //C
+            {0,1,0,0,1},  //D
+            {0,0,1,1,0}   //E
+        };
+        
+        System.out.println(t.isBipartido(adj) ? "Bipartido" : "Não Bipartido(Certo)");
+        
+        
     }
 
     public String tipoDoGrafo(final int[][] adj) {
@@ -134,7 +179,7 @@ public class Exercicio01 {
             }
         }
         int total = 0;
-        if(isSimetrico) {
+        if (isSimetrico) {
             for (int v = 1; v <= graus.length; v++) {
                 ret += "e" + v + ", ";
                 total += graus[0][v];
@@ -156,6 +201,56 @@ public class Exercicio01 {
 
         return str;
     }
-
     
+    private boolean isBipartido(int[][] adj) {
+        HashSet<Integer> bolsonaro = new HashSet<>();
+        HashSet<Integer> lula = new HashSet<>();
+        HashSet<Integer> adjacencias;
+        boolean isBolsonaro = true;
+        for (int linha = 0; linha < adj.length; linha++) {
+            adjacencias = getAdjacencias(adj, linha);
+            if(bolsonaro.contains(linha)) {
+                isBolsonaro = true;
+            } else {
+                isBolsonaro = false;
+            }
+            if(isBolsonaro) {
+                if(collectionContainsAny(bolsonaro, adjacencias)) {
+                    return false;
+                } else {
+                    bolsonaro.add(linha);
+                    lula.addAll(adjacencias);
+                }
+            } else {
+                if(collectionContainsAny(lula, adjacencias)) {
+                    return false;
+                } else {
+                    lula.add(linha);
+                    bolsonaro.addAll(adjacencias);
+                }
+            }
+            
+        }
+        return true;
+    }
+    
+    private HashSet<Integer> getAdjacencias(int[][] adj, int linha) {
+        HashSet<Integer> adjacencias = new HashSet();
+        for (int i = 0; i < adj.length; i++) {
+            if(adj[linha][i] > 0) {
+                adjacencias.add(i);
+            }
+        }
+        return adjacencias;
+    }
+
+    private boolean collectionContainsAny(HashSet<Integer> collection, HashSet<Integer> adjacencias) {
+        for(Integer adj: adjacencias) {
+            if(collection.contains(adj)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
