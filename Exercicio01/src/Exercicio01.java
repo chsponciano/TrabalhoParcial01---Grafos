@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
- *
  * @author Carlos Henrique Ponciano da Silva && Vinicius Luis da Silva
  */
 public class Exercicio01 {
@@ -243,9 +243,9 @@ public class Exercicio01 {
     }
 
     private boolean isBipartido(int[][] adj) {
-        HashSet<Integer> controle1 = new HashSet<>();
-        HashSet<Integer> controle2 = new HashSet<>();
-        HashSet<Integer> adjacencias;
+        Set<Integer> controle1 = new HashSet<>();
+        Set<Integer> controle2 = new HashSet<>();
+        Set<Integer> adjacencias;
         boolean continua = true;
         for (int linha = 0; linha < adj.length; linha++) {
             adjacencias = getAdjacencias(adj, linha);
@@ -274,8 +274,8 @@ public class Exercicio01 {
         return true;
     }
 
-    private HashSet<Integer> getAdjacencias(int[][] adj, int linha) {
-        HashSet<Integer> adjacencias = new HashSet();
+    private Set<Integer> getAdjacencias(int[][] adj, int linha) {
+        Set<Integer> adjacencias = new HashSet();
         for (int i = 0; i < adj.length; i++) {
             if (adj[linha][i] > 0) {
                 adjacencias.add(i);
@@ -284,7 +284,7 @@ public class Exercicio01 {
         return adjacencias;
     }
 
-    private boolean collectionContainsAny(HashSet<Integer> collection, HashSet<Integer> adjacencias) {
+    private boolean collectionContainsAny(Set<Integer> collection, Set<Integer> adjacencias) {
         for (Integer adj : adjacencias) {
             if (collection.contains(adj)) {
                 return true;

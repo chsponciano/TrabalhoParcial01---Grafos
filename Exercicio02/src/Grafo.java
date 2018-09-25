@@ -1,16 +1,11 @@
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.ArrayDeque;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- *
- * @author Carlos
+ * @author Carlos Henrique Ponciano da Silva && Vinicius Luis da Silva
  */
 public class Grafo {
 
@@ -26,7 +21,7 @@ public class Grafo {
 
     public int buscar() {
         this.total = 0;
-        Queue<Vertice> fila = new LinkedBlockingQueue<>();
+        Queue<Vertice> fila = new ArrayDeque<>();
         fila.add(vertices.get("Entrada"));
         int ateQueijo = this.buscar(fila, vertices.get("*"));
         total = 0;
@@ -38,7 +33,7 @@ public class Grafo {
     
     
     private int buscar(Queue<Vertice> vertices, Vertice destino){
-        Queue<Vertice> fila = new LinkedBlockingQueue<>();
+        Queue<Vertice> fila = new ArrayDeque<>();
         Vertice v;
         while(!vertices.isEmpty()) {
             v = vertices.poll();

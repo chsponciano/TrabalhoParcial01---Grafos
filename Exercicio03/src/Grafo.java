@@ -2,7 +2,6 @@
 import java.util.Map;
 
 /**
- *
  * @author Carlos Henrique Ponciano da Silva && Vinicius Luis da Silva
  */
 public class Grafo {

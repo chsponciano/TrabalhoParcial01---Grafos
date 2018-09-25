@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
- * @author Carlos
+ * @author Carlos Henrique Ponciano da Silva && Vinicius Luis da Silva
  */
 public class Apresentacao extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Apresentacao
-     */
     public Apresentacao() {
         initComponents();
         this.setResizable(false);
@@ -76,13 +67,9 @@ public class Apresentacao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         ta_saida.setText(Analisador.montarGrafos(ta_entrada.getText()));
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
