@@ -1,4 +1,8 @@
 
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Stack;
+
 /**
  *
  * @author Carlos Henrique Ponciano da Silva && Vinicius Luis da Silva
@@ -21,7 +25,7 @@ public class Exercicio01 {
         adj[2][1] = 1;
         adj[2][2] = 0;
 
-        System.out.println(t.tipoDoGrafo(adj));
+        System.out.println(t.arestasDoGrafo(adj));
 
         System.out.println("\n-----------------------\n");
 
@@ -29,24 +33,24 @@ public class Exercicio01 {
         //Dirigido
         adj[0][0] = 0;
         adj[0][1] = 1;
-        adj[0][2] = 0;
-        adj[0][3] = 1;
+        adj[0][2] = 1;
+        adj[0][3] = 0;
 
-        adj[1][0] = 0;
+        adj[1][0] = 1;
         adj[1][1] = 0;
         adj[1][2] = 0;
-        adj[1][3] = 0;
+        adj[1][3] = 1;
 
-        adj[2][0] = 0;
-        adj[2][1] = 1;
+        adj[2][0] = 1;
+        adj[2][1] = 0;
         adj[2][2] = 0;
-        adj[2][3] = 0;
+        adj[2][3] = 1;
 
         adj[3][0] = 0;
         adj[3][1] = 1;
         adj[3][2] = 1;
         adj[3][3] = 0;
-        System.out.println(t.tipoDoGrafo(adj));
+        System.out.println(t.arestasDoGrafo(adj));
     }
 
     public String tipoDoGrafo(final int[][] adj) {
@@ -85,6 +89,7 @@ public class Exercicio01 {
         }
 
         if (resultado[0]) {
+            //resultado[5] = isBipartido(adj);
             for (int v = 1; v <= graus.length; v++) {
                 if (graus[0][v - 1] != graus[0][v]) {
                     resultado[2] = false;
@@ -112,11 +117,38 @@ public class Exercicio01 {
 
         return str;
     }
-    
-    
 
     public String arestasDoGrafo(final int[][] adj) {
-        return null;
+        String ret = new String();
+        boolean isSimetrico = true;
+        int[][] graus = new int[2][adj.length];
+        for (int v = 0; v < adj.length; v++) {
+            for (int w = 0; w < adj[v].length; w++) {
+                //Simetria
+                if (isSimetrico) {
+                    isSimetrico = (adj[v][w] == adj[w][v]);
+                }
+                //Graus - Regular
+                graus[0][v] += adj[v][w]; //Saida
+                graus[1][w] += adj[v][w]; //Entrada
+            }
+        }
+        int total = 0;
+        if(isSimetrico) {
+            for (int v = 1; v <= graus.length; v++) {
+                ret += "e" + v + ", ";
+                total += graus[0][v];
+            }
+            total /= 2;
+        } else {
+            for (int v = 1; v <= graus.length; v++) {
+                for (int i = 0; i < graus.length; i++) {
+                    ret += "e" + v + ", ";
+                    total += adj[v][i]; //Saida
+                }
+            }
+        }
+        return total + " -> " + ret;
     }
 
     public String grausDoVertices(final int[][] adj) {
@@ -124,4 +156,6 @@ public class Exercicio01 {
 
         return str;
     }
+
+    
 }
