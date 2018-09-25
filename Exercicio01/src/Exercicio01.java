@@ -1,6 +1,10 @@
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -9,103 +13,142 @@ import java.util.Stack;
  */
 public class Exercicio01 {
 
+    private int[][] graus;
+
     public static void main(String[] args) {
         Exercicio01 t = new Exercicio01();
-        
-        int[][] adj = new int[][] {
-           //A,B,C
-            {0,1,1},  //A
-            {1,0,1},  //B
-            {1,1,0}   //C
+
+        int[][] adj = new int[][]{
+            //A,B,C
+            {0, 1, 1}, //A
+            {1, 0, 1}, //B
+            {1, 1, 0} //C
         };
-        
-        System.out.println(t.isBipartido(adj) ? "Bipartido" : "Não Bipartido(Certo)");
-        
-        adj = new int[][] {
-           //A,B,C,D
-            {0,1,1,0},  //A
-            {1,0,0,1},  //B
-            {1,0,0,1},  //C
-            {0,1,1,0}   //D
+
+        System.out.println("1a. " + t.tipoDoGrafo(adj));
+        System.out.println("1b. " + t.arestasDoGrafo(adj));
+//        System.out.println("1c. " + t.grausDoVertices(adj));
+        System.out.println("");
+
+        adj = new int[][]{
+            //A,B,C
+            {0, 1, 0}, //A
+            {0, 0, 1}, //B
+            {1, 0, 0} //C
         };
-        
-        System.out.println(t.isBipartido(adj) ? "Bipartido(Certo)" : "Não Bipartido");
-        
-        adj = new int[][] {
-           //A,B,C,D
-            {0,1,1,1},  //A
-            {1,0,0,0},  //B
-            {1,0,0,0},  //C
-            {1,0,0,0}   //D
+
+        System.out.println("2a. " + t.tipoDoGrafo(adj));
+        System.out.println("2b. " + t.arestasDoGrafo(adj));
+//        System.out.println("2c. " + t.grausDoVertices(adj));
+        System.out.println("");
+
+        adj = new int[][]{
+            //A,B,C,D
+            {0, 1, 1, 1}, //A
+            {1, 0, 0, 0}, //B
+            {1, 0, 0, 0}, //C
+            {1, 0, 0, 0} //D
         };
-        
-        System.out.println(t.isBipartido(adj) ? "Bipartido(Certo)" : "Não Bipartido");
-        
-        adj = new int[][] {
-           //A,B,C,D
-            {0,1,1,1},  //A
-            {1,0,1,1},  //B
-            {1,1,0,1},  //C
-            {1,1,1,0}   //D
+
+        System.out.println("3a. " + t.tipoDoGrafo(adj));
+        System.out.println("3b. " + t.arestasDoGrafo(adj));
+        System.out.println("3c. " + t.grausDoVertices(adj));
+        System.out.println("");
+
+        adj = new int[][]{
+            //A,B,C,D
+            {0, 1, 1, 1}, //A
+            {1, 0, 1, 1}, //B
+            {1, 1, 0, 1}, //C
+            {1, 1, 1, 0} //D
         };
-        
-        System.out.println(t.isBipartido(adj) ? "Bipartido" : "Não Bipartido(Certo)");
-        
-        adj = new int[][] {
-           //A,B,C,D,E
-            {0,0,0,1,0},  //A
-            {0,0,0,1,0},  //B
-            {0,0,0,0,1},  //C
-            {1,1,0,0,0},  //D
-            {0,1,1,0,0}   //E
+
+        System.out.println("4a. " + t.tipoDoGrafo(adj));
+        System.out.println("4b. " + t.arestasDoGrafo(adj));
+        System.out.println("4c. " + t.grausDoVertices(adj));
+        System.out.println("");
+
+        adj = new int[][]{
+            //A,B,C,D,E
+            {0, 0, 0, 1, 0}, //A
+            {0, 0, 0, 1, 0}, //B
+            {0, 0, 0, 0, 1}, //C
+            {1, 1, 0, 0, 0}, //D
+            {0, 1, 1, 0, 0} //E
         };
-        
-        System.out.println(t.isBipartido(adj) ? "Bipartido(Certo)" : "Não Bipartido");
-        
-        adj = new int[][] {
-           //A,B,C,D,E
-            {0,0,0,1,1},  //A
-            {0,0,0,1,1},  //B
-            {0,0,0,1,1},  //C
-            {1,1,1,0,0},  //D
-            {1,1,1,0,0}   //E
+
+        System.out.println("5a. " + t.tipoDoGrafo(adj));
+        System.out.println("5b. " + t.arestasDoGrafo(adj));
+        System.out.println("5c. " + t.grausDoVertices(adj));
+        System.out.println("");
+
+        adj = new int[][]{
+            //A,B,C,D,E
+            {0, 0, 0, 1, 1}, //A
+            {0, 0, 0, 1, 1}, //B
+            {0, 0, 0, 1, 1}, //C
+            {1, 1, 1, 0, 0}, //D
+            {1, 1, 1, 0, 0} //E
         };
-        
-        System.out.println(t.isBipartido(adj) ? "Bipartido(Certo)" : "Não Bipartido");
-        
-        adj = new int[][] {
-           //A,B,C,D,E
-            {0,0,0,0,1},  //A
-            {0,0,0,0,1},  //B
-            {0,0,0,0,1},  //C
-            {0,0,0,0,1},  //D
-            {1,1,1,1,0}   //E
+
+        System.out.println("6a. " + t.tipoDoGrafo(adj));
+        System.out.println("6b. " + t.arestasDoGrafo(adj));
+        System.out.println("6c. " + t.grausDoVertices(adj));
+        System.out.println("");
+
+        adj = new int[][]{
+            //A,B,C,D,E
+            {0, 0, 0, 0, 1}, //A
+            {0, 0, 0, 0, 1}, //B
+            {0, 0, 0, 0, 1}, //C
+            {0, 0, 0, 0, 1}, //D
+            {1, 1, 1, 1, 0} //E
         };
-        
-        System.out.println(t.isBipartido(adj) ? "Bipartido(Certo)" : "Não Bipartido");
-        
-        adj = new int[][] {
-           //A,B,C,D,E
-            {0,1,1,0,0},  //A
-            {1,0,0,1,0},  //B
-            {1,0,0,0,1},  //C
-            {0,1,0,0,1},  //D
-            {0,0,1,1,0}   //E
+
+        System.out.println("7a. " + t.tipoDoGrafo(adj));
+        System.out.println("7b. " + t.arestasDoGrafo(adj));
+        System.out.println("7c. " + t.grausDoVertices(adj));
+        System.out.println("");
+
+        adj = new int[][]{
+            //A,B,C,D,E
+            {0, 1, 1, 0, 0}, //A
+            {1, 0, 0, 1, 0}, //B
+            {1, 0, 0, 0, 1}, //C
+            {0, 1, 0, 0, 1}, //D
+            {0, 0, 1, 1, 0} //E
         };
-        
-        System.out.println(t.isBipartido(adj) ? "Bipartido" : "Não Bipartido(Certo)");
-        
-        
+
+        System.out.println("8a. " + t.tipoDoGrafo(adj));
+        System.out.println("8b. " + t.arestasDoGrafo(adj));
+        System.out.println("8c. " + t.grausDoVertices(adj));
+        System.out.println("");
+
     }
 
     public String tipoDoGrafo(final int[][] adj) {
+        boolean[] resultado = this.statusGrafos(adj);
+
+        String str = "Tipo do grafo: ";
+        str = (resultado[0]) ? "Não-Dirigido, " : "Dirigido, ";
+        str += (resultado[1]) ? "Multigrafo, " : "Simples, ";
+        str += (resultado[2]) ? "Regular, " : "";
+        str += (resultado[3]) ? "Completo, " : "";
+        str += (resultado[4]) ? "Nulo, " : "";
+        str += (resultado[5]) ? "Bipartido, " : "";
+
+        return str.substring(0, str.length() - 2);
+    }
+
+    private boolean[] statusGrafos(int[][] adj) {
         //0 - dirigido(false) ou não-dirigido(true);        
         //1 - simples(false) ou multigrafo(true);        
         //2 - regular;
         //3 - completo;        
         //4 - nulo ou bipartido;
+
         boolean[] resultado = {true, false, true, true, true, false};
-        int[][] graus = new int[2][adj.length];
+        this.graus = new int[2][adj.length];
 
         for (int v = 0; v < adj.length; v++) {
             for (int w = 0; w < adj[v].length; w++) {
@@ -120,8 +163,8 @@ public class Exercicio01 {
                 }
 
                 //Graus - Regular
-                graus[0][v] += adj[v][w]; //Saida
-                graus[1][w] += adj[v][w]; //Entrada
+                this.graus[0][v] += adj[v][w]; //Saida
+                this.graus[1][w] += adj[v][w]; //Entrada
 
                 //Completo
                 if (v != w) {
@@ -133,111 +176,93 @@ public class Exercicio01 {
             }
         }
 
-        if (resultado[0]) {
-            //resultado[5] = isBipartido(adj);
-            for (int v = 1; v <= graus.length; v++) {
-                if (graus[0][v - 1] != graus[0][v]) {
-                    resultado[2] = false;
-                    break;
-                }
-            }
-        } else {
-            for (int v = 0; v < graus.length; v++) {
-                for (int j = 1; j < graus[v].length; j++) {
-                    if (graus[v][j - 1] != graus[v][j]) {
-                        resultado[2] = false;
-                        break;
-                    }
-                }
-            }
-        }
+        resultado[2] = isRegular(resultado[0]);
+        resultado[5] = isBipartido(adj);
 
-        //Saida
-        String str = (resultado[0]) ? "Não-Dirigido, " : "Dirigido, ";
-        str += (resultado[1]) ? "Multigrafo, " : "Simples, ";
-        str += (resultado[2]) ? "Regular, " : "";
-        str += (resultado[3]) ? "Completo, " : "";
-        str += (resultado[4]) ? "Nulo, " : "";
-        str += (resultado[5]) ? "Bipartido, " : "";
-
-        return str;
+        return resultado;
     }
 
     public String arestasDoGrafo(final int[][] adj) {
-        String ret = new String();
-        boolean isSimetrico = true;
-        int[][] graus = new int[2][adj.length];
+        String saida = new String();
+        String totalizador = new String();
+        boolean isSimetrico = this.statusGrafos(adj)[0];
+        int nArestas = 0;
+
+        saida += " E = {";
         for (int v = 0; v < adj.length; v++) {
             for (int w = 0; w < adj[v].length; w++) {
-                //Simetria
-                if (isSimetrico) {
-                    isSimetrico = (adj[v][w] == adj[w][v]);
-                }
-                //Graus - Regular
-                graus[0][v] += adj[v][w]; //Saida
-                graus[1][w] += adj[v][w]; //Entrada
-            }
-        }
-        int total = 0;
-        if (isSimetrico) {
-            for (int v = 1; v <= graus.length; v++) {
-                ret += "e" + v + ", ";
-                total += graus[0][v];
-            }
-            total /= 2;
-        } else {
-            for (int v = 1; v <= graus.length; v++) {
-                for (int i = 0; i < graus.length; i++) {
-                    ret += "e" + v + ", ";
-                    total += adj[v][i]; //Saida
+                if (adj[v][w] > 0) {
+//                    if (!isSimetrico || w > v) {
+                        saida += "(v" + (v + 1) + ", v" + (w + 1) + "), ";
+                        nArestas++;
+//                    }
                 }
             }
         }
-        return total + " -> " + ret;
+        if(isSimetrico){
+            totalizador = "N° arestas: " + (nArestas/2) + " | ";
+        }else{
+            totalizador = "N° arestas de Entrada : " + nArestas + " | N° arestas de Saida : " + nArestas + " | ";
+        }
+
+        return totalizador + saida.substring(0, saida.length() - 2) + "}";
     }
 
     public String grausDoVertices(final int[][] adj) {
-        String str = "Graus: ";
-
-        return str;
+        String saida = new String();
+        this.statusGrafos(adj);
+        
+        List<Integer> graus = new ArrayList();
+        
+        for (int i = 0; i < this.graus[0].length; i++) {
+            graus.add(this.graus[0][i]);
+            saida += "v"+(i+1)+" = "+ this.graus[0][i] + ", ";
+        }
+        
+        Collections.sort(graus);
+        saida = saida.substring(0, saida.length()-2) + " | (";
+        for (Integer g : graus) {
+            saida += g + ", ";
+        }
+        return saida.substring(0, saida.length()-2) + ")";
     }
-    
+
     private boolean isBipartido(int[][] adj) {
-        HashSet<Integer> bolsonaro = new HashSet<>();
-        HashSet<Integer> lula = new HashSet<>();
+        HashSet<Integer> controle1 = new HashSet<>();
+        HashSet<Integer> controle2 = new HashSet<>();
         HashSet<Integer> adjacencias;
-        boolean isBolsonaro = true;
+        boolean continua = true;
         for (int linha = 0; linha < adj.length; linha++) {
             adjacencias = getAdjacencias(adj, linha);
-            if(bolsonaro.contains(linha)) {
-                isBolsonaro = true;
+            if (controle1.contains(linha)) {
+                continua = true;
             } else {
-                isBolsonaro = false;
+                continua = false;
             }
-            if(isBolsonaro) {
-                if(collectionContainsAny(bolsonaro, adjacencias)) {
+            if (continua) {
+                if (collectionContainsAny(controle1, adjacencias)) {
                     return false;
                 } else {
-                    bolsonaro.add(linha);
-                    lula.addAll(adjacencias);
+                    controle1.add(linha);
+                    controle2.addAll(adjacencias);
                 }
             } else {
-                if(collectionContainsAny(lula, adjacencias)) {
+                if (collectionContainsAny(controle2, adjacencias)) {
                     return false;
                 } else {
-                    lula.add(linha);
-                    bolsonaro.addAll(adjacencias);
+                    controle2.add(linha);
+                    controle1.addAll(adjacencias);
                 }
             }
-            
+
         }
         return true;
     }
-    
+
     private HashSet<Integer> getAdjacencias(int[][] adj, int linha) {
         HashSet<Integer> adjacencias = new HashSet();
         for (int i = 0; i < adj.length; i++) {
-            if(adj[linha][i] > 0) {
+            if (adj[linha][i] > 0) {
                 adjacencias.add(i);
             }
         }
@@ -245,12 +270,31 @@ public class Exercicio01 {
     }
 
     private boolean collectionContainsAny(HashSet<Integer> collection, HashSet<Integer> adjacencias) {
-        for(Integer adj: adjacencias) {
-            if(collection.contains(adj)) {
+        for (Integer adj : adjacencias) {
+            if (collection.contains(adj)) {
                 return true;
             }
         }
         return false;
     }
 
+    private boolean isRegular(boolean isSemetrico) {
+        if (isSemetrico) {
+            for (int v = 1; v <= this.graus.length; v++) {
+                if (this.graus[0][v - 1] != this.graus[0][v]) {
+                    return false;
+                }
+            }
+        } else {
+            for (int v = 0; v < this.graus.length; v++) {
+                for (int j = 1; j < this.graus[v].length; j++) {
+                    if (this.graus[v][j - 1] != this.graus[v][j]) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
 }
